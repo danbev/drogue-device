@@ -18,7 +18,7 @@ use defmt_rtt as _;
 
 // Creates a newtype named `BSP` around the `Stm32f072b` to avoid
 // orphan rules and apply delegation boilerplate.
-bind_bsp!(Stm32f072bDisco, BSP);
+bind_bsp!(Stm32f072bDisco<'static>, BSP);
 
 /// Define the required associated types for easy reference to avoid
 /// generic explosion for the details of this board to the app.
@@ -31,7 +31,7 @@ static DEVICE: DeviceContext<BlinkyDevice<BSP>> = DeviceContext::new();
 
 #[embassy::main]
 async fn main(spawner: embassy::executor::Spawner, p: Peripherals) {
-    let board = BSP::new(p);
+    let board = BSP::new(p, None);
 
     let config = BlinkyConfiguration {
         led: board.0.led_blue,

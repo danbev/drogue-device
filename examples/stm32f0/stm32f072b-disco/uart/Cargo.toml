@@ -1,0 +1,32 @@
+[package]
+authors = [
+    "Ulf Lilleengen <lulf@redhat.com>",
+    "Bob McWhirter <bmcwhirt@redhat.com>",
+    "Daniel Bevenius <dbevenius@redhat.com>",
+]
+edition = "2018"
+name = "stm32f072b-disco-uart"
+version = "0.1.0"
+resolver = "2"
+description = "STM32f072b Discovery board Uart"
+keywords = ["stm32f072b", "uart"]
+
+[dependencies]
+defmt = "0.3"
+defmt-rtt = "0.3"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+drogue-device = { path = "../../../../device", default-features = false, features = ["defmt", "time", "bsp+stm32f072b_disco"] }
+cortex-m-rt = "0.7.0"
+cortex-m = "0.7.1"
+cfg-if = "1.0.0"
+
+atomic-polyfill = "0.1"
+embassy = { version = "0.1.0", default-features = false, features=["defmt", "time"] }
+embassy-stm32 = {version = "0.1.0", default-features = false, features = ["defmt", "time-driver-tim3", "memory-x"] }
+embedded-hal = { version = "0.2.4", features = ["unproven"] }
+
+[features]
+default = [
+    "stm32f072b",
+]
+stm32f072b = ["embassy-stm32/stm32f070rb"]

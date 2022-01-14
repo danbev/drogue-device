@@ -40,7 +40,7 @@ fn config() -> Config {
 
 #[embassy::main(config = "config()")]
 async fn main(spawner: embassy::executor::Spawner, p: Peripherals) {
-    let board = BSP::new(p);
+    let board = BSP::new(p, None);
 
     DEVICE
         .configure(BlinkyDevice::new())

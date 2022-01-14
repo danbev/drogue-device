@@ -1125,6 +1125,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "stm32f072b-disco-uart"
+version = "0.1.0"
+dependencies = [
+ "atomic-polyfill",
+ "cfg-if",
+ "cortex-m",
+ "cortex-m-rt",
+ "defmt",
+ "defmt-rtt",
+ "drogue-device",
+ "embassy",
+ "embassy-stm32",
+ "embedded-hal",
+ "panic-probe",
+]
+
+[[package]]
 name = "strsim"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

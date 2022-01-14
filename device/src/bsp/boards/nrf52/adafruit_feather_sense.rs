@@ -21,8 +21,9 @@ pub struct AdafruitFeatherSense {
 
 impl Board for AdafruitFeatherSense {
     type Peripherals = embassy_nrf::Peripherals;
+    type Config = ();
 
-    fn new(p: Self::Peripherals) -> Self {
+    fn new(p: Self::Peripherals, _config: Option<Self::Config>) -> Self {
         Self {
             led_red: Led::new(Output::new(p.P1_10, Level::Low, OutputDrive::Standard)),
             user_button: Button::new(Input::new(p.P1_02, Pull::Up)),
