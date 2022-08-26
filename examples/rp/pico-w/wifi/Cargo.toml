@@ -1,0 +1,33 @@
+[package]
+authors = [
+    "Daniel Bevenius <dbevenius@redhat.com>",
+]
+edition = "2021"
+name = "wifi"
+version = "0.1.0"
+description = "Raspberry Pi Pico W Wifi example"
+keywords = ["rp", "rpi", "pico", "cyw43", "basic"]
+
+
+[dependencies]
+cyw43 = { git = "https://github.com/embassy-rs/cyw43", branch = "master", features = ["defmt"]}
+embassy-executor = { version = "0.1.0",  features = ["defmt", "integrated-timers"] }
+embassy-time = { version = "0.1.0",  features = ["defmt", "defmt-timestamp-uptime"] }
+embassy-rp = { version = "0.1.0",  features = ["defmt", "unstable-traits", "nightly", "unstable-pac"] }
+embassy-net = { version = "0.1.0", features = ["defmt", "tcp", "dhcpv4", "medium-ethernet", "pool-16"] }
+atomic-polyfill = "0.1.5"
+static_cell = "1.0"
+drogue-device = { path = "../../../../device", features = ["defmt"], default-features = false }
+
+defmt = "0.3"
+defmt-rtt = "0.3"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+
+cortex-m = { version = "0.7.6", features = ["critical-section-single-core"]}
+cortex-m-rt = "0.7.0"
+futures = { version = "0.3.17", default-features = false, features = ["async-await", "cfg-target-has-atomic", "unstable"] }
+
+embedded-hal-1 = { package = "embedded-hal", version = "1.0.0-alpha.8" }
+embedded-hal-async = { version = "0.1.0-alpha.1" }
+embedded-io = { version = "0.3.0", features = ["async", "defmt"] }
+heapless = "0.7.15"

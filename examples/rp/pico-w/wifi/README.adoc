@@ -1,0 +1,83 @@
+== RaspBerry Pi Pico W Wifi example 
+
+This example application runs out of the box on the Raspberry Pi Pico W and
+demonstrates basic WiFi capabilities. The example will join a WiFi network and
+then start a http server. This server can be accessed using a tool like `nc` or
+`telnet` and the data sent to this server will be sent through to a Drogue Cloud
+application.
+
+=== Prerequisites
+
+==== Hardware
+
+* link:https://www.raspberrypi.org/products/raspberry-pi-pico/[RaspBerry Pi Pico W]
+
+==== Software
+
+* link:https://rustup.rs/[rustup] to build the code
+* To flash the example on the device, you need `probe-run` installed (`cargo install probe-run`).
+
+=== Configuring
+
+Credentials for your local WiFi network will come from these entries in `~/.drogue/config.toml`:
+
+....
+wifi-ssid = "..."
+wifi-password = "..."
+....
+
+HTTP authentication will come from these entries in `~/.drogue/config.toml`:
+
+....
+http-username = "..."
+http-password = "..."
+....
+
+For Drogue Cloud, the username/password is stored in this form: `device_id@application`.
+
+You can find an example config file in link:.drogue/config-sample.toml[]. Copy
+and edit this file into `~/.drogue/config.toml` which will then be read by the
+during compilation.
+
+=== Running
+....
+cargo run --release`
+    Finished dev [optimized + debuginfo] target(s) in 3.13s
+     Running `probe-run --chip RP2040 /home/danielbevenius/work/drougue/drogue-device/examples/rp/pico-w/target/thumbv6m-none-eabi/debug/wifi`
+(HOST) INFO  flashing program (80 pages / 320.00 KiB)
+(HOST) INFO  success!
+────────────────────────────────────────────────────────────────────────────────
+0.001214 INFO  Drogue IoT Pico Pi W Echo server example
+...
+
+14.700013 DEBUG Acquired IP configuration:
+└─ embassy_net::stack::{impl#4}::apply_config @ /home/danielbevenius/.cargo/git/checkouts/embassy-9312dcb0ed774b29/cb9f0ef/embassy-net/src/fmt.rs:125
+14.700068 DEBUG    IP address:      192.168.0.63/24
+└─ embassy_net::stack::{impl#4}::apply_config @ /home/danielbevenius/.cargo/git/checkouts/embassy-9312dcb0ed774b29/cb9f0ef/embassy-net/src/fmt.rs:125
+14.700193 DEBUG    Default gateway: 192.168.0.1
+└─ embassy_net::stack::{impl#4}::apply_config @ /home/danielbevenius/.cargo/git/checkouts/embassy-9312dcb0ed774b29/cb9f0ef/embassy-net/src/fmt.rs:125
+14.700314 DEBUG    DNS server 0:    83.255.255.1
+└─ embassy_net::stack::{impl#4}::apply_config @ /home/danielbevenius/.cargo/git/checkouts/embassy-9312dcb0ed774b29/cb9f0ef/embassy-net/src/fmt.rs:125
+14.700369 DEBUG    DNS server 1:    83.255.255.2
+└─ embassy_net::stack::{impl#4}::apply_config @ /home/danielbevenius/.cargo/git/checkouts/embassy-9312dcb0ed774b29/cb9f0ef/embassy-net/src/fmt.rs:125
+....
+
+We can then use the above `IP address` to use `nc` (Ncat) to access the server:
+....
+nc 192.168.0.63 1234
+hello
+hello
+....
+You can also use `telnet` if `nc` is to available:
+....
+$ telnet 192.168.0.63 1234
+Trying 192.168.0.63...
+Connected to 192.168.0.63.
+Escape character is '^]'.
+hello
+hello
+^]
+telnet> q
+Connection closed.
+....
+

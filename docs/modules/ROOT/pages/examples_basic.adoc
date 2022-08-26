@@ -1,3 +1,4 @@
+* xref:examples/rp/pico-w/echo/README.adoc[Raspberry Pi Pico W Echo Server] (link:https://github.com/drogue-iot/drogue-device/tree/main/examples/rp/pico-w/echo[github])
 * xref:examples/rp/pico/blinky/README.adoc[Raspberry Pi Pico Blinky] (link:https://github.com/drogue-iot/drogue-device/tree/main/examples/rp/pico/blinky[github])
 * xref:examples/stm32h7/nucleo-h743zi/blinky/README.adoc[STM32 Nucleo-H743 blinky] (link:https://github.com/drogue-iot/drogue-device/tree/main/examples/stm32h7/nucleo-h743zi/blinky[github])
 * xref:examples/stm32u5/iot02a/blinky/README.adoc[STM32 IoT Discovery board blinky] (link:https://github.com/drogue-iot/drogue-device/tree/main/examples/stm32u5/iot02a/blinky[github])

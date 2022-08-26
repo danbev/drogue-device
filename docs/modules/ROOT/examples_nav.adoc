@@ -1,5 +1,6 @@
 * xref:examples.adoc[Examples]
 ** Basic
+*** xref:examples/rp/pico-w/echo/README.adoc[Raspberry Pi Pico W Echo Server]
 *** xref:examples/rp/pico/blinky/README.adoc[Raspberry Pi Pico Blinky]
 *** xref:examples/stm32h7/nucleo-h743zi/blinky/README.adoc[STM32 Nucleo-H743 blinky]
 *** xref:examples/stm32u5/iot02a/blinky/README.adoc[STM32 IoT Discovery board blinky]

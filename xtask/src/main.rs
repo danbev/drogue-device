@@ -56,6 +56,7 @@ static WORKSPACES: &[&str] = &[
     "examples/stm32l4/iot01a/wifi",
     "examples/stm32l4/iot01a/bootloader",
     "examples/rp/pico",
+    "examples/rp/pico-w",
     "examples/stm32wl/nucleo-wl55/bootloader",
     "examples/stm32wl/nucleo-wl55/lorawan",
     "examples/stm32wl/nucleo-wl55/lorawan-dfu",
@@ -188,6 +189,8 @@ fn check_device() -> Result<(), anyhow::Error> {
 
 fn build(workspaces: &[&str], batch: bool) -> Result<(), anyhow::Error> {
     let _e = xshell::pushenv("RUSTFLAGS", "-Dwarnings");
+    let _e = xshell::pushenv("WIFI_NETWORK", "dummy");
+    let _e = xshell::pushenv("WIFI_PASSWORD", "dummy");
     if batch {
         generate_batch_command(workspaces, vec!["build", "--release"])?.run()?;
     } else {
